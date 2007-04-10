@@ -35,7 +35,7 @@ public class AnomolyIDS
 	}
 	
 	/*
-	 * This method takes in a filename and returns an Arraylist of signature values
+	 * This method takes in a filename and returns an Arraylist of signatures
 	 */
 	private static ArrayList getSignaturesFromFile(String file)
 	{
@@ -82,6 +82,22 @@ public class AnomolyIDS
 		}
 		
 		return signatureList;
+	}
+	
+	/*
+	 * Given a string that represents a full signature (41 comma seperated values):
+	 * Filter out values to be ignored
+	 * 
+	 * signatures ignored are:
+	 * 2,3,4,7,12,21,22
+	 * 
+	 * return arraylist of ints without ignored values
+	 *
+	 */
+	private ArrayList stringToInt(String signatureString)
+	{
+		
+		return null;
 	}
 	
 	/*
