@@ -25,7 +25,7 @@ public class AnomolyIDS
 	public static void main(String[] args) 
 	{
 		//Get signatures from normal file
-		ArrayList normalSignatures = getSignaturesFromFile("/data/optomized_normal");
+		ArrayList normalSignatures = getSignaturesFromFile("./data/Optimized_Normal-TRAINER");
 
 	}
 	
