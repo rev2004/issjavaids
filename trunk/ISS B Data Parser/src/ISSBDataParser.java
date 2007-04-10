@@ -23,7 +23,7 @@ import java.util.Random;
  * 
  */
 
-public class ISS_B_Data_Parser {
+public class ISSBDataParser {
 
 	/**
 	 * @param args
