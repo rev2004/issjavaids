@@ -24,14 +24,15 @@ public class AnomolyIDS
 	 */
 	public static void main(String[] args) 
 	{
-		// TODO Auto-generated method stub
+		//Get signatures from normal file
+		ArrayList normalSignatures = getSignaturesFromFile("/files/optomized_normal");
 
 	}
 	
 	/*
 	 * This method takes in a filename and returns an Arraylist of signatures
 	 */
-	private ArrayList getSignaturesFromFile(String file)
+	private static ArrayList getSignaturesFromFile(String file)
 	{
 		BufferedReader input = null;
 		
