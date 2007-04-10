@@ -24,8 +24,14 @@ public class AnomolyIDS
 	 */
 	public static void main(String[] args) 
 	{
-		//Get signatures from normal file
-		ArrayList normalSignatures = getSignaturesFromFile("./data/Optimized_Normal-TRAINER");
+		/*
+		 * setup an arraylist of 34 arrays that contain a Q1 and Q3 value of the normal data from a normal file
+		 */
+		
+		
+		/*
+		 * now, these 34 arrays will hold all the stats to check against
+		 */
 
 	}
 	
