@@ -1,10 +1,7 @@
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 
 /*
  * This is an Anomoly based IDS
@@ -30,13 +27,15 @@ public class AnomolyIDS
 		
 		
 		/*
-		 * now, these 34 arrays will hold all the stats to check against
+		 * now, these 34 arrays will hold all the Q1 and Q3 stats to check against
 		 */
+		
+		
 
 	}
 	
 	/*
-	 * This method takes in a filename and returns an Arraylist of signatures
+	 * This method takes in a filename and returns an Arraylist of signature values
 	 */
 	private static ArrayList getSignaturesFromFile(String file)
 	{
@@ -84,5 +83,18 @@ public class AnomolyIDS
 		
 		return signatureList;
 	}
+	
+	/*
+	 * This method takes in stat values and compares them to a given signature's values and based on the securityLevel says:
+	 * 
+	 * return TRUE if packet falls within stats
+	 * return FALSE if packet does not
+	 */
+	 private static boolean isInBounds(ArrayList<ArrayList> stats, ArrayList signature, int securityLevel)
+	 {
+		 boolean inBounds = false;
+		 
+		 return inBounds;
+	 }
 
 }
