@@ -2,7 +2,7 @@
 
 = Introduction =
 
-This is an Anomoly IDS
+This is an Anomoly IDS<br/>
 It's found here: http://issjavaids.googlecode.com/svn/trunk/AnomolyIDS/
 
 
