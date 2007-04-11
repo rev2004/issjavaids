@@ -62,8 +62,8 @@ public class BSReader {
 		//ArrayList[] results = new ArrayList[4];
 		
 		columnData = new ArrayList< ArrayList<Double> >();
-		initData();
-		System.out.println("S:"+columnData.size());
+		//initData();
+		//System.out.println("S:"+columnData.size());
 		
 	      try {
 			input = new BufferedReader( new FileReader(filename) );
@@ -80,14 +80,14 @@ public class BSReader {
 				String tmp[] = line.split(",");
 				int realColumn = 0;
 				for (int y = 0; y < tmp.length; y++) {
-					
-					// we only want to store this columns value if its not in the ignore
-					// list.  So we keep a value called realColumn to keep in synch with
-					// our array of array lists
-					//if (!ignoreColumns.contains(new Integer(y-1))) {
+					 if (columnData.size() < y+1) {
+						 ArrayList<Double> newElt = new ArrayList<Double>();
+						 columnData.add(newElt);
+					 }
+				
 						columnData.get(y).add(Double.parseDouble(tmp[y]));
 						realColumn++;
-					//}
+		
 					
 				}
 				counter++;
@@ -161,7 +161,7 @@ public class BSReader {
 		
 		BSReader foo = new BSReader();
 		foo.debug = false;
-		ArrayList< ArrayList<Double> >  bar = foo.getRange("Optimized_GuessPassword-TRAINER");
+		ArrayList< ArrayList<Double> >  bar = foo.getRange("./data/Optimized_Normal-TRAINER");
 		
 
 		
