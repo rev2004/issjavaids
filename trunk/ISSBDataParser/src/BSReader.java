@@ -142,6 +142,9 @@ public class BSReader {
 	 */
 	public static void main(String[] args) {
 		
+		/*
+		 * NOTE:  This does not omit symbolic columns.
+		 */
 		
 		BSReader foo = new BSReader();
 		foo.debug = false;
