@@ -84,7 +84,10 @@ public class AnomolyIDS
 				System.out.println("Bad sizes :: normalSats = "+normalStats.size()+" :: signature = "+signature.size());
 			}
 		}
-		
+		/*
+		 * All done! lets print some stats!
+		 */
+		System.out.println("Found "+normal+" normal packets and "+misuse+" misuse packets!");
 		
 
 	}
@@ -165,9 +168,29 @@ public class AnomolyIDS
 	 */
 	 private static boolean isInBounds(ArrayList<ArrayList<Double>> normalStats, ArrayList<Double> signature, int securityLevel)
 	 {
-		 boolean inBounds = false;
+		 int failures = 0;
 		 
-		 return inBounds;
+		 //loop through signatures
+		 for(int i = 0; i<signature.size(); i++)
+		 {
+			 //is it < Q1?
+			 if(signature.get(i) < normalStats.get(i).get(0))
+			 {
+				 failures++;
+			 }
+			 //ok so far
+			 else
+			 {
+				 //is it >Q3?
+				 if(signature.get(i) > normalStats.get(i).get(1))
+				 {
+					 failures++;
+				 }
+			 }
+			 
+		}
+		 
+		 return failures<=securityLevel;
 	 }
 
 }
