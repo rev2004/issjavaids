@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import BSReader.java;
 
 /*
  * This is an Anomoly based IDS
@@ -16,19 +17,57 @@ import java.util.ArrayList;
 public class AnomolyIDS 
 {
 
+	//This variable defines how strict we match stats, if number of deviations is > than SECURITY_LEVEL; isInBonds returns FALSE
+	private static final int SECURITY_LEVEL = 2;
+
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) 
 	{
 		/*
-		 * setup an arraylist of 34 arrays that contain a Q1 and Q3 value of the normal data from a normal file
+		 * setup an arraylist of 41 arrays that contain a Q1 and Q3 value of the normal data from a normal file
 		 */
+		BSReader myReader = new BSReader();
+		ArrayList<ArrayList<Double>> normalStats = myReader.getRange("./data/Optimized_Normal-TRAINER");
 		
+		//now remove the ones we don't want (2,3,4,7,12,21,22)
+		//adjust for array starts at 0 (so subtract 1
+		normalStats.remove(1);
+		normalStats.remove(2);
+		normalStats.remove(3);
+		normalStats.remove(6);
+		normalStats.remove(11);
+		normalStats.remove(20);
+		normalStats.remove(21);
 		
 		/*
-		 * now, these 34 arrays will hold all the Q1 and Q3 stats to check against
+		 * now, normalStats has 34 arrays will hold all the Q1 and Q3 stats to check against
+		 * 
+		 * So, lets get our signatures to check
+		 * 
 		 */
+		ArrayList<String> signatureStrings = getSignaturesFromFile("./data/TEST.DATA");
+		
+		/*
+		 * run our signatures against our stats
+		 */
+		int misuse = 0;
+		int normal = 0;
+		ArrayList<Double> signature;
+		
+		for(String currString : signatureStrings)
+		{
+			signature = stringToInt(currString);
+			if(isInBounds(normalStats, signature, SECURITY_LEVEL))
+			{
+				normal++;
+			}
+			else
+			{
+				misuse++;
+			}
+		}
 		
 		
 
@@ -94,7 +133,7 @@ public class AnomolyIDS
 	 * return arraylist of ints without ignored values
 	 *
 	 */
-	private ArrayList stringToInt(String signatureString)
+	private static ArrayList stringToInt(String signatureString)
 	{
 		
 		return null;
