@@ -12,3 +12,7 @@ Add your content here.  Format your content with:
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
 
+= Compilation Note =
+You need to increase the heapspace since we use a large amount of data.
+
+http://www.npike.net/uploads/AnomolyCompileThing.png
