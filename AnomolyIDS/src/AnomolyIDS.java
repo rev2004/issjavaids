@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import BSReader.java;
 
 /*
  * This is an Anomoly based IDS
@@ -58,7 +57,7 @@ public class AnomolyIDS
 		
 		for(String currString : signatureStrings)
 		{
-			signature = stringToInt(currString);
+			signature = stringToDouble(currString);
 			if(isInBounds(normalStats, signature, SECURITY_LEVEL))
 			{
 				normal++;
@@ -133,10 +132,16 @@ public class AnomolyIDS
 	 * return arraylist of ints without ignored values
 	 *
 	 */
-	private static ArrayList stringToInt(String signatureString)
+	private static ArrayList<Double> stringToDouble(String signatureString)
 	{
+		ArrayList<Double> sigDouble = new ArrayList<Double>();
+		String tmp[] = signatureString.split(",");
+		for( int i = 0; i<tmp.length ; i++)
+		{
+			sigDouble.add(Double.valueOf(tmp[i]));
+		}
 		
-		return null;
+		return sigDouble;
 	}
 	
 	/*
@@ -145,7 +150,7 @@ public class AnomolyIDS
 	 * return TRUE if packet falls within stats
 	 * return FALSE if packet does not
 	 */
-	 private static boolean isInBounds(ArrayList<ArrayList> stats, ArrayList signature, int securityLevel)
+	 private static boolean isInBounds(ArrayList<ArrayList<Double>> normalStats, ArrayList<Double> signature, int securityLevel)
 	 {
 		 boolean inBounds = false;
 		 
