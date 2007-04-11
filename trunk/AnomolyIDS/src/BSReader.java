@@ -14,28 +14,29 @@ import java.util.ArrayList;
 /**
  * @author <a href="mailto:nsp1828@rit.edy">Nicholas Pike</a>
  * @version
+ * 
+ * This class is responsible for finding the first and third quartiles for all columns in a given signature file
  */
-
-
 public class BSReader {
 	private BufferedReader input = null;
-	private ArrayList<Double>[] bullshitArray = null;
 	private ArrayList<Integer> ignoreColumns = null;
 	private ArrayList< ArrayList<Double> > columnData = null;
 	
 	public boolean debug = false;
 	
+	/**
+	 * Default Constructor - this actually does nothing at the moment, but used to 
+	 * contain functionality for setuping up removal of "useless columns"
+	 */
 	public BSReader() {
-		ignoreColumns = new ArrayList<Integer>();
-		ignoreColumns.add(new Integer(2));
-		ignoreColumns.add(new Integer(3));
-		ignoreColumns.add(new Integer(4));
-		ignoreColumns.add(new Integer(7));
-		ignoreColumns.add(new Integer(12));
-		ignoreColumns.add(new Integer(21));
-		ignoreColumns.add(new Integer(22));
+		
 	}
 	
+	
+	/**
+	 * Private funtion that handles the initiliazation of the
+	 * columnData ArrayList.
+	 */
 	private void initData() {
 		for (int x = 0; x < 41; x++) {
 			ArrayList<Double> column = new ArrayList<Double>();
@@ -44,6 +45,14 @@ public class BSReader {
 		}
 	}
 	
+	/**
+	 * Given a filename to a comma delimited signature file, this function
+	 * will parse the files and signatures into columns, and store this in a datatype.
+	 * Once done parsing, each row is sorted, and the first and third quartiles are calculated
+	 * and returned
+	 * @param filename The file name of the signature file
+	 * @return an arraylist of 41 elements, each element being an arraylist containing two elements: q1 and q3
+	 */
 	public ArrayList< ArrayList<Double> > getRange(String filename) {
 		ArrayList< ArrayList<Double> > retVal = new ArrayList< ArrayList<Double> >();
 		ArrayList<Double> q1 = new ArrayList<Double>();
@@ -140,6 +149,8 @@ public class BSReader {
 	}
 
 	/**
+	 * This function is used for unit testing only.
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
