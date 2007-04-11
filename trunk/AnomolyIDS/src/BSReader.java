@@ -47,7 +47,7 @@ public class BSReader {
 	public ArrayList< ArrayList<Double> > getRange(String filename) {
 		ArrayList< ArrayList<Double> > retVal = new ArrayList< ArrayList<Double> >();
 		ArrayList<Double> q1 = new ArrayList<Double>();
-		ArrayList<Double> q2 = new ArrayList<Double>();
+		ArrayList<Double> q3 = new ArrayList<Double>();
 		
 		//bullshitArray = new ArrayList<Double>[34];
 		//ArrayList[] results = new ArrayList[4];
@@ -107,10 +107,16 @@ public class BSReader {
 				
 				
 				Double q1Val = (Double)column.get(q1Index);
-				Double q2Val = (Double)column.get(q3Index);
+				Double q3Val = (Double)column.get(q3Index);
 				
-				q1.add(q1Val);
-				q2.add(q2Val);
+				ArrayList<Double> vals = new ArrayList<Double>();
+				vals.add(q1Val);
+				vals.add(q3Val);
+				
+				retVal.add(vals);
+				
+			//	q1.add(q1Val);
+			//	q3.add(q3Val);
 				
 				if (debug) {
 				//iterate and print its elements to make sure its actually sorted
@@ -121,19 +127,15 @@ public class BSReader {
 					}
 					System.out.println("#################");
 					System.out.println("Q1:" + q1);
-					System.out.println("Q2:" + q2);
+					System.out.println("Q3:" + q3);
 				}
 				
 			}
 		
 		
-		// find the quarters (1 and 3)
 		
-		// we want to cut off anything below the first quartile
 		
-		// and anything after the third quartile
-		retVal.add(q1);
-		retVal.add(q2);
+		
 		return retVal;
 	}
 
@@ -150,20 +152,19 @@ public class BSReader {
 		foo.debug = false;
 		ArrayList< ArrayList<Double> >  bar = foo.getRange("Optimized_GuessPassword-TRAINER");
 		
-		ArrayList<Double> q1 = bar.get(0);
-		ArrayList<Double> q2 = bar.get(1);
+
 		
 		int counter = 0;
-		for (Object elt : q1) {
-			Double colQ1 = (Double)elt;
-			Double colQ2 = q2.get(counter);
-			System.out.println("Column "+counter+ " = "+colQ1+"/"+colQ2);
+		for (ArrayList<Double>  elt : bar) {
+			
+			
+			System.out.println("Column "+counter+ " = "+elt.get(0)+"/"+elt.get(1));
 			counter++;
 		}
 		
 		
-		System.out.println(q1.size());
-		System.out.println(q2.size());
+		//System.out.println(q1.size());
+		//System.out.println(q2.size());
 	   
 		
 	}
