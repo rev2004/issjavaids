@@ -1,3 +1,5 @@
+#summary List of symbolic columns
+
 The following columns are symbolic and should be ignored while parsing
 
   * 2
