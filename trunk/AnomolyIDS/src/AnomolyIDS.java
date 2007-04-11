@@ -58,13 +58,30 @@ public class AnomolyIDS
 		for(String currString : signatureStrings)
 		{
 			signature = stringToDouble(currString);
-			if(isInBounds(normalStats, signature, SECURITY_LEVEL))
+			//filter out what we dont want to compare
+			signature.remove(1);
+			signature.remove(2);
+			signature.remove(3);
+			signature.remove(6);
+			signature.remove(11);
+			signature.remove(20);
+			signature.remove(21);
+			
+			//check to make sure sizes correct
+			if(normalStats.size() == signature.size())
 			{
-				normal++;
+				if(isInBounds(normalStats, signature, SECURITY_LEVEL))
+				{
+					normal++;
+				}
+				else
+				{
+					misuse++;
+				}
 			}
 			else
 			{
-				misuse++;
+				System.out.println("Bad sizes :: normalSats = "+normalStats.size()+" :: signature = "+signature.size());
 			}
 		}
 		
@@ -124,12 +141,8 @@ public class AnomolyIDS
 	
 	/*
 	 * Given a string that represents a full signature (41 comma seperated values):
-	 * Filter out values to be ignored
-	 * 
-	 * signatures ignored are:
-	 * 2,3,4,7,12,21,22
-	 * 
-	 * return arraylist of ints without ignored values
+	 *
+	 * return arraylist of Doubles
 	 *
 	 */
 	private static ArrayList<Double> stringToDouble(String signatureString)
