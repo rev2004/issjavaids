@@ -17,7 +17,7 @@ public class AnomolyIDS
 {
 
 	//This variable defines how strict we match stats, if number of deviations is > than SECURITY_LEVEL; isInBonds returns FALSE
-	private static final int SECURITY_LEVEL = 6;
+	private static final int SECURITY_LEVEL = 8;
 
 	/**
 	 * @param args
