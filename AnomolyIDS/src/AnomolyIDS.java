@@ -32,13 +32,16 @@ public class AnomolyIDS
 		
 		//now remove the ones we don't want (2,3,4,7,12,21,22)
 		//adjust for array starts at 0 (so subtract 1
-		normalStats.remove(1);
-		normalStats.remove(2);
-		normalStats.remove(3);
-		normalStats.remove(6);
-		normalStats.remove(11);
-		normalStats.remove(20);
+		//be sure to do it from top to bottom to avoid shifting array problems! (thanks Bill!)
 		normalStats.remove(21);
+		normalStats.remove(20);
+		normalStats.remove(11);
+		normalStats.remove(6);
+		normalStats.remove(3);
+		normalStats.remove(2);
+		normalStats.remove(1);
+		
+		
 		
 		/*
 		 * now, normalStats has 34 arrays will hold all the Q1 and Q3 stats to check against
@@ -59,13 +62,13 @@ public class AnomolyIDS
 		{
 			signature = stringToDouble(currString);
 			//filter out what we dont want to compare
-			signature.remove(1);
-			signature.remove(2);
-			signature.remove(3);
-			signature.remove(6);
-			signature.remove(11);
-			signature.remove(20);
 			signature.remove(21);
+			signature.remove(20);
+			signature.remove(11);
+			signature.remove(6);
+			signature.remove(3);
+			signature.remove(2);
+			signature.remove(1);
 			
 			//check to make sure sizes correct
 			if(normalStats.size() == signature.size())
