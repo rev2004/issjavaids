@@ -33,18 +33,59 @@ public class MisuseIDS
 		/*
 		 * setup an arraylist of 41 arrays that contain a Q1 and Q3 value of the normal data from a normal file
 		 */
-		BSReader myReader = new BSReader();
-		ArrayList<ArrayList<Double>> normalStats = myReader.getRange("./data/Optimized_Normal-TRAINER");
+		BSReader myBOReader = new BSReader();
+		BSReader myGPReader = new BSReader();
+		BSReader myPSReader = new BSReader();
+		BSReader myRReader = new BSReader();
+		BSReader mySReader = new BSReader();
+		
+		ArrayList<ArrayList<Double>> bufferOverflowStats = myBOReader.getRange("./data/Optimized_BufferOverflow-TRAINER");
+		ArrayList<ArrayList<Double>> guessPasswordStats = myGPReader.getRange("./data/Optimized_GuessPassword-TRAINER");
+		ArrayList<ArrayList<Double>> portSweepStats = myPSReader.getRange("./data/Optimized_PortSweep-TRAINER");		
+		ArrayList<ArrayList<Double>> rootkitStats = myRReader.getRange("./data/Optimized_Rootkit-TRAINER");
+		ArrayList<ArrayList<Double>> satanStats = mySReader.getRange("./data/Optimized_Satan-TRAINER");		
 		
 		//now remove the ones we don't want (2,3,4,7,12,21,22)
 		//adjust for array starts at 0 (so subtract 1
-		normalStats.remove(1);
-		normalStats.remove(2);
-		normalStats.remove(3);
-		normalStats.remove(6);
-		normalStats.remove(11);
-		normalStats.remove(20);
-		normalStats.remove(21);
+		bufferOverflowStats.remove(1);
+		bufferOverflowStats.remove(2);
+		bufferOverflowStats.remove(3);
+		bufferOverflowStats.remove(6);
+		bufferOverflowStats.remove(11);
+		bufferOverflowStats.remove(20);
+		bufferOverflowStats.remove(21);
+		
+		guessPasswordStats.remove(1);
+		guessPasswordStats.remove(2);
+		guessPasswordStats.remove(3);
+		guessPasswordStats.remove(6);
+		guessPasswordStats.remove(11);
+		guessPasswordStats.remove(20);
+		guessPasswordStats.remove(21);
+		
+		portSweepStats.remove(1);
+		portSweepStats.remove(2);
+		portSweepStats.remove(3);
+		portSweepStats.remove(6);
+		portSweepStats.remove(11);
+		portSweepStats.remove(20);
+		portSweepStats.remove(21);
+		
+		rootkitStats.remove(1);
+		rootkitStats.remove(2);
+		rootkitStats.remove(3);
+		rootkitStats.remove(6);
+		rootkitStats.remove(11);
+		rootkitStats.remove(20);
+		rootkitStats.remove(21);
+		
+		satanStats.remove(1);
+		satanStats.remove(2);
+		satanStats.remove(3);
+		satanStats.remove(6);
+		satanStats.remove(11);
+		satanStats.remove(20);
+		satanStats.remove(21);
 		
 		/*
 		 * now, normalStats has 34 arrays will hold all the Q1 and Q3 stats to check against
@@ -74,21 +115,86 @@ public class MisuseIDS
 			signature.remove(21);
 			
 			//check to make sure sizes correct
-			if(normalStats.size() == signature.size())
+			if(bufferOverflowStats.size() == signature.size())
 			{
-				if(isInBounds(normalStats, signature, SECURITY_LEVEL))
+				if(isInBounds(bufferOverflowStats, signature, SECURITY_LEVEL))
 				{
-					normal++;
+					misuse++;
 				}
 				else
 				{
-					misuse++;
+					normal++;
 				}
 			}
 			else
 			{
-				System.out.println("Bad sizes :: normalSats = "+normalStats.size()+" :: signature = "+signature.size());
+				System.out.println("Bad sizes :: bufferOverflowSats = "+bufferOverflowStats.size()+" :: signature = "+signature.size());
 			}
+			
+			if(guessPasswordStats.size() == signature.size())
+			{
+				if(isInBounds(guessPasswordStats, signature, SECURITY_LEVEL))
+				{
+					misuse++;
+				}
+				else
+				{
+					normal++;
+				}
+			}
+			else
+			{
+				System.out.println("Bad sizes :: guessPasswordSats = "+guessPasswordStats.size()+" :: signature = "+signature.size());
+			}
+			
+			if(portSweepStats.size() == signature.size())
+			{
+				if(isInBounds(portSweepStats, signature, SECURITY_LEVEL))
+				{
+					misuse++;
+				}
+				else
+				{
+					normal++;
+				}
+			}
+			else
+			{
+				System.out.println("Bad sizes :: portSweepSats = "+portSweepStats.size()+" :: signature = "+signature.size());
+			}
+			
+			if(rootkitStats.size() == signature.size())
+			{
+				if(isInBounds(rootkitStats, signature, SECURITY_LEVEL))
+				{
+					misuse++;
+				}
+				else
+				{
+					normal++;
+				}
+			}
+			else
+			{
+				System.out.println("Bad sizes :: rootkitSats = "+rootkitStats.size()+" :: signature = "+signature.size());
+			}
+			
+			if(satanStats.size() == signature.size())
+			{
+				if(isInBounds(satanStats, signature, SECURITY_LEVEL))
+				{
+					misuse++;
+				}
+				else
+				{
+					normal++;
+				}
+			}
+			else
+			{
+				System.out.println("Bad sizes :: satanStats = "+satanStats.size()+" :: signature = "+signature.size());
+			}
+			
 		}
 		/*
 		 * All done! lets print some stats!
