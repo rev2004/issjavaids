@@ -105,14 +105,14 @@ public class MisuseIDS
 		for(String currString : signatureStrings)
 		{
 			signature = stringToDouble(currString);
-			//filter out what we dont want to compare
-			signature.remove(1);
-			signature.remove(2);
-			signature.remove(3);
-			signature.remove(6);
-			signature.remove(11);
-			signature.remove(20);
+			//filter out what we dont want to compare 1 2 3 6 11 20 21
 			signature.remove(21);
+			signature.remove(20);
+			signature.remove(11);
+			signature.remove(6);
+			signature.remove(3);
+			signature.remove(2);
+			signature.remove(1);
 			
 			//check to make sure sizes correct
 			if(bufferOverflowStats.size() == signature.size())
@@ -194,7 +194,7 @@ public class MisuseIDS
 			{
 				System.out.println("Bad sizes :: satanStats = "+satanStats.size()+" :: signature = "+signature.size());
 			}
-			
+	
 		}
 		/*
 		 * All done! lets print some stats!
