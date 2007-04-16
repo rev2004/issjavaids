@@ -23,7 +23,7 @@ public class MisuseIDS
 {
 
 	//This variable defines how strict we match stats, if number of deviations is > than SECURITY_LEVEL; isInBonds returns FALSE
-	private static final int SECURITY_LEVEL = 6;
+	private static final int SECURITY_LEVEL = 12;
 
 	/**
 	 * @param args
@@ -98,8 +98,8 @@ public class MisuseIDS
 		/*
 		 * run our signatures against our stats
 		 */
-		int misuse = 0;
-		int normal = 0;
+		int bufferMisuse = 0, passMisuse = 0, portMisuse = 0, rootkitMisuse = 0, satanMisuse = 0;
+		int total = 0;
 		ArrayList<Double> signature;
 		
 		for(String currString : signatureStrings)
@@ -119,12 +119,9 @@ public class MisuseIDS
 			{
 				if(isInBounds(bufferOverflowStats, signature, SECURITY_LEVEL))
 				{
-					misuse++;
+					bufferMisuse++;
 				}
-				else
-				{
-					normal++;
-				}
+			
 			}
 			else
 			{
@@ -135,11 +132,7 @@ public class MisuseIDS
 			{
 				if(isInBounds(guessPasswordStats, signature, SECURITY_LEVEL))
 				{
-					misuse++;
-				}
-				else
-				{
-					normal++;
+					passMisuse++;
 				}
 			}
 			else
@@ -151,11 +144,7 @@ public class MisuseIDS
 			{
 				if(isInBounds(portSweepStats, signature, SECURITY_LEVEL))
 				{
-					misuse++;
-				}
-				else
-				{
-					normal++;
+					portMisuse++;
 				}
 			}
 			else
@@ -167,11 +156,7 @@ public class MisuseIDS
 			{
 				if(isInBounds(rootkitStats, signature, SECURITY_LEVEL))
 				{
-					misuse++;
-				}
-				else
-				{
-					normal++;
+					rootkitMisuse++;
 				}
 			}
 			else
@@ -183,23 +168,24 @@ public class MisuseIDS
 			{
 				if(isInBounds(satanStats, signature, SECURITY_LEVEL))
 				{
-					misuse++;
-				}
-				else
-				{
-					normal++;
+					satanMisuse++;
 				}
 			}
 			else
 			{
 				System.out.println("Bad sizes :: satanStats = "+satanStats.size()+" :: signature = "+signature.size());
 			}
-	
+			total++;
 		}
 		/*
 		 * All done! lets print some stats!
 		 */
-		System.out.println("Found "+normal+" normal packets and "+misuse+" misuse packets!");
+		System.out.println(total+" total packets scanned.");
+		System.out.println("Found "+bufferMisuse+" BufferOverflow misuse packets.");
+		System.out.println("Found "+passMisuse+" GuessPassword misuse packets.");
+		System.out.println("Found "+portMisuse+" PortSweep misuse packets.");
+		System.out.println("Found "+rootkitMisuse+" Rootkit misuse packets.");
+		System.out.println("Found "+satanMisuse+" Satan misuse packets.");
 		
 
 	}
