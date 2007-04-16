@@ -101,11 +101,13 @@ public class MisuseIDS
 		 * run our signatures against our stats
 		 */
 		int bufferMisuse = 0, passMisuse = 0, portMisuse = 0, rootkitMisuse = 0, satanMisuse = 0;
-		int total = 0;
+		int total = 0, normal = 0;
+
 		ArrayList<Double> signature;
 		
 		for(String currString : signatureStrings)
 		{
+			boolean detected = false;
 			signature = stringToDouble(currString);
 			//filter out what we dont want to compare 1 2 3 6 11 20 21
 			signature.remove(21);
@@ -122,6 +124,7 @@ public class MisuseIDS
 				if(isInBounds(bufferOverflowStats, signature, SECURITY_LEVEL))
 				{
 					bufferMisuse++;
+					detected = true;
 				}
 			
 			}
@@ -135,6 +138,7 @@ public class MisuseIDS
 				if(isInBounds(guessPasswordStats, signature, SECURITY_LEVEL))
 				{
 					passMisuse++;
+					detected = true;
 				}
 			}
 			else
@@ -147,6 +151,7 @@ public class MisuseIDS
 				if(isInBounds(portSweepStats, signature, SECURITY_LEVEL))
 				{
 					portMisuse++;
+					detected = true;
 				}
 			}
 			else
@@ -159,6 +164,7 @@ public class MisuseIDS
 				if(isInBounds(rootkitStats, signature, SECURITY_LEVEL))
 				{
 					rootkitMisuse++;
+					detected = true;
 				}
 			}
 			else
@@ -171,6 +177,7 @@ public class MisuseIDS
 				if(isInBounds(satanStats, signature, SECURITY_LEVEL))
 				{
 					satanMisuse++;
+					detected = true;
 				}
 			}
 			else
@@ -178,11 +185,14 @@ public class MisuseIDS
 				System.out.println("Bad sizes :: satanStats = "+satanStats.size()+" :: signature = "+signature.size());
 			}
 			total++;
+			if(!detected)
+				normal++;
 		}
 		/*
 		 * All done! lets print some stats!
 		 */
 		System.out.println(total+" total packets scanned.");
+		System.out.println(normal+" normal packets scanned.");
 		System.out.println("Found "+bufferMisuse+" BufferOverflow misuse packets.");
 		System.out.println("Found "+passMisuse+" GuessPassword misuse packets.");
 		System.out.println("Found "+portMisuse+" PortSweep misuse packets.");
