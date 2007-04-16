@@ -47,45 +47,45 @@ public class MisuseIDS
 		
 		//now remove the ones we don't want (2,3,4,7,12,21,22)
 		//adjust for array starts at 0 (so subtract 1
-		bufferOverflowStats.remove(1);
-		bufferOverflowStats.remove(2);
-		bufferOverflowStats.remove(3);
-		bufferOverflowStats.remove(6);
-		bufferOverflowStats.remove(11);
-		bufferOverflowStats.remove(20);
 		bufferOverflowStats.remove(21);
+		bufferOverflowStats.remove(20);
+		bufferOverflowStats.remove(11);
+		bufferOverflowStats.remove(6);
+		bufferOverflowStats.remove(3);
+		bufferOverflowStats.remove(2);
+		bufferOverflowStats.remove(1);
 		
-		guessPasswordStats.remove(1);
-		guessPasswordStats.remove(2);
-		guessPasswordStats.remove(3);
-		guessPasswordStats.remove(6);
-		guessPasswordStats.remove(11);
-		guessPasswordStats.remove(20);
 		guessPasswordStats.remove(21);
+		guessPasswordStats.remove(20);
+		guessPasswordStats.remove(11);
+		guessPasswordStats.remove(6);
+		guessPasswordStats.remove(3);
+		guessPasswordStats.remove(2);
+		guessPasswordStats.remove(1);
 		
-		portSweepStats.remove(1);
-		portSweepStats.remove(2);
-		portSweepStats.remove(3);
-		portSweepStats.remove(6);
-		portSweepStats.remove(11);
-		portSweepStats.remove(20);
 		portSweepStats.remove(21);
+		portSweepStats.remove(20);
+		portSweepStats.remove(11);
+		portSweepStats.remove(6);
+		portSweepStats.remove(3);
+		portSweepStats.remove(2);
+		portSweepStats.remove(1);
 		
-		rootkitStats.remove(1);
-		rootkitStats.remove(2);
-		rootkitStats.remove(3);
-		rootkitStats.remove(6);
-		rootkitStats.remove(11);
-		rootkitStats.remove(20);
 		rootkitStats.remove(21);
+		rootkitStats.remove(20);
+		rootkitStats.remove(11);
+		rootkitStats.remove(6);
+		rootkitStats.remove(3);
+		rootkitStats.remove(2);
+		rootkitStats.remove(1);
 		
-		satanStats.remove(1);
-		satanStats.remove(2);
-		satanStats.remove(3);
-		satanStats.remove(6);
-		satanStats.remove(11);
-		satanStats.remove(20);
 		satanStats.remove(21);
+		satanStats.remove(20);
+		satanStats.remove(11);
+		satanStats.remove(6);
+		satanStats.remove(3);
+		satanStats.remove(2);
+		satanStats.remove(1);
 		
 		/*
 		 * now, normalStats has 34 arrays will hold all the Q1 and Q3 stats to check against
