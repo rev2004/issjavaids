@@ -119,7 +119,7 @@ public class MisuseIDS
 			signature.remove(1);
 			
 			//check to make sure sizes correct
-			if(bufferOverflowStats.size() == signature.size())
+			if(bufferOverflowStats.size() == signature.size() && !detected)
 			{
 				if(isInBounds(bufferOverflowStats, signature, SECURITY_LEVEL))
 				{
@@ -133,7 +133,7 @@ public class MisuseIDS
 				System.out.println("Bad sizes :: bufferOverflowSats = "+bufferOverflowStats.size()+" :: signature = "+signature.size());
 			}
 			
-			if(guessPasswordStats.size() == signature.size())
+			if(guessPasswordStats.size() == signature.size() && !detected)
 			{
 				if(isInBounds(guessPasswordStats, signature, SECURITY_LEVEL))
 				{
@@ -146,7 +146,7 @@ public class MisuseIDS
 				System.out.println("Bad sizes :: guessPasswordSats = "+guessPasswordStats.size()+" :: signature = "+signature.size());
 			}
 			
-			if(portSweepStats.size() == signature.size())
+			if(portSweepStats.size() == signature.size() && !detected)
 			{
 				if(isInBounds(portSweepStats, signature, SECURITY_LEVEL))
 				{
@@ -157,6 +157,19 @@ public class MisuseIDS
 			else
 			{
 				System.out.println("Bad sizes :: portSweepSats = "+portSweepStats.size()+" :: signature = "+signature.size());
+			}
+			
+			if(satanStats.size() == signature.size() && !detected)
+			{
+				if(isInBounds(satanStats, signature, SECURITY_LEVEL))
+				{
+					satanMisuse++;
+					detected = true;
+				}
+			}
+			else
+			{
+				System.out.println("Bad sizes :: satanStats = "+satanStats.size()+" :: signature = "+signature.size());
 			}
 			
 			if(rootkitStats.size() == signature.size())
@@ -172,19 +185,8 @@ public class MisuseIDS
 				System.out.println("Bad sizes :: rootkitSats = "+rootkitStats.size()+" :: signature = "+signature.size());
 			}
 			
-			if(satanStats.size() == signature.size())
-			{
-				if(isInBounds(satanStats, signature, SECURITY_LEVEL))
-				{
-					satanMisuse++;
-					detected = true;
-				}
-			}
-			else
-			{
-				System.out.println("Bad sizes :: satanStats = "+satanStats.size()+" :: signature = "+signature.size());
-			}
 			total++;
+			
 			if(!detected)
 				normal++;
 		}
