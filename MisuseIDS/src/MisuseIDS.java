@@ -13,7 +13,9 @@
 
 		
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 		
@@ -23,7 +25,7 @@ public class MisuseIDS
 {
 
 	//This variable defines how strict we match stats, if number of deviations is > than SECURITY_LEVEL; isInBonds returns FALSE
-	private static final int SECURITY_LEVEL = 12;
+	private static final int SECURITY_LEVEL = 3;
 
 	/**
 	 * @param args
@@ -186,6 +188,24 @@ public class MisuseIDS
 		System.out.println("Found "+portMisuse+" PortSweep misuse packets.");
 		System.out.println("Found "+rootkitMisuse+" Rootkit misuse packets.");
 		System.out.println("Found "+satanMisuse+" Satan misuse packets.");
+		
+		BufferedWriter misuseOutput = null;
+		try 
+		{
+			misuseOutput = new BufferedWriter( new FileWriter("data/README.DATA",true));
+			misuseOutput.write(total+" total packets scanned. \n");
+			misuseOutput.write("Found "+bufferMisuse+" BufferOverflow misuse packets. \n");
+			misuseOutput.write("Found "+passMisuse+" GuessPassword misuse packets. \n");
+			misuseOutput.write("Found "+portMisuse+" PortSweep misuse packets. \n");
+			misuseOutput.write("Found "+rootkitMisuse+" Rootkit misuse packets. \n");
+			misuseOutput.write("Found "+satanMisuse+" Satan misuse packets. \n\n");
+			
+			misuseOutput.close();
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
 		
 
 	}
