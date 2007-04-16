@@ -206,6 +206,7 @@ public class MisuseIDS
 		{
 			misuseOutput = new BufferedWriter( new FileWriter("data/README.DATA",true));
 			misuseOutput.write(total+" total packets scanned. \n");
+			misuseOutput.write(normal+" normal packets scanned. \n");
 			misuseOutput.write("Found "+bufferMisuse+" BufferOverflow misuse packets. \n");
 			misuseOutput.write("Found "+passMisuse+" GuessPassword misuse packets. \n");
 			misuseOutput.write("Found "+portMisuse+" PortSweep misuse packets. \n");
