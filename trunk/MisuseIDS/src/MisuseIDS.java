@@ -174,7 +174,7 @@ public class MisuseIDS
 			
 			if(rootkitStats.size() == signature.size())
 			{
-				if(isInBounds(rootkitStats, signature, SECURITY_LEVEL))
+				if(isInBounds(rootkitStats, signature, SECURITY_LEVEL) && !detected)
 				{
 					rootkitMisuse++;
 					detected = true;
