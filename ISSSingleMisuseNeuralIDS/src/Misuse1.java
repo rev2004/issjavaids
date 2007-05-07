@@ -38,8 +38,8 @@ public class Misuse1 {
 		   double[][] desiredTrain = JooneTools.getDataFromStream(fileIn, 1, trainingRows, 35, 35);
 		       
 		   // Extract the testing data
-		   double[][] inputTest = JooneTools.getDataFromStream(fileIn, trainingRows+1, 45, 1, 34);
-		  double[][] desiredTest = JooneTools.getDataFromStream(fileIn, trainingRows+1, 45, 35, 35);
+		   double[][] inputTest = JooneTools.getDataFromStream(fileIn, trainingRows+2, 45, 1, 34);
+		  double[][] desiredTest = JooneTools.getDataFromStream(fileIn, trainingRows+2, 45, 35, 35);
 		
 //		 Line 1: Create an MLP network with 3 layers [2,2,1 nodes] with a logistic output layer
 		NeuralNet nnet = JooneTools.create_standard(new int[]{34,15,1}, JooneTools.LOGISTIC);
