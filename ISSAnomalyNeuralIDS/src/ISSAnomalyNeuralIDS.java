@@ -23,11 +23,11 @@ public class ISSAnomalyNeuralIDS
 		   normIn.setMax(1);
 		   fileIn.addPlugIn(normIn);
 
-		   // Target data normalized between 0 and 5
+		   // Target data normalized between 0 and .9
 		   NormalizerPlugIn normDes = new NormalizerPlugIn();
 		   normDes.setAdvancedSerieSelector("42");
 		   normDes.setMin(0);
-		   normDes.setMax(5);
+		   normDes.setMax(.4);
 		   fileIn.addPlugIn(normDes);
 		   
 		   // Extract the training data
@@ -43,7 +43,7 @@ public class ISSAnomalyNeuralIDS
 
 //		 Line 2: Train the network for 5000 epochs, or until the rmse < 0.01
 		double rmse = JooneTools.train(nnet, inputTrain, desiredTrain,
-		                       2000,      // Max epoch
+		                       5000,      // Max epoch
 		                       0.01,      // Min RMSE
 		                       0,          // Epochs between ouput reports
 		                       null,      // Std Output
@@ -55,7 +55,8 @@ public class ISSAnomalyNeuralIDS
 		double[][] out = JooneTools.compare(nnet, inputTest, desiredTest);
 		 System.out.println("Comparison of the last "+out.length+" rows:");
 	        int cols = out[0].length/2;
-	        for (int i=0; i < out.length; ++i) {
+	        for (int i=0; i < out.length; ++i) 
+	        {
 	            System.out.print("\nOutput: ");
 	            for (int x=0; x < cols; ++x) {
 	                System.out.print(out[i][x]+" ");
