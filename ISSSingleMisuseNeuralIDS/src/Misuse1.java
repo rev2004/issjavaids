@@ -23,7 +23,7 @@ public class Misuse1 {
 		int trainingRows = 38;
 //		 Prepare the training and testing data set
 		   FileInputSynapse fileIn = new FileInputSynapse();
-		   fileIn.setInputFile(new File("data/JOONE-TEST1.DATA"));
+		   fileIn.setInputFile(new File("../data/JOONE-TEST1.DATA"));
 		   fileIn.setAdvancedColumnSelector("1-35");
 
 		   // Input data normalized between -1 and +1
@@ -59,7 +59,20 @@ public class Misuse1 {
 		);
 		System.out.println("Training complete.");
 //		 Line 3: Interrogate the network
-		
+//		 Line 3: Interrogate the network
+		double[][] out = JooneTools.compare(nnet, inputTest, desiredTest);
+		 System.out.println("Comparion of the last "+out.length+" rows:");
+	        int cols = out[0].length/2;
+	        for (int i=0; i < out.length; ++i) {
+	            System.out.print("\nOutput: ");
+	            for (int x=0; x < cols; ++x) {
+	                System.out.print(out[i][x]+" ");
+	            }
+	            System.out.print("\tTarget: ");
+	            for (int x=cols; x < cols*2; ++x) {
+	                System.out.print(out[i][x]+" ");
+	            }
+	        }
 	}
 
 }
