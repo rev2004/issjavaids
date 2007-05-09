@@ -23,7 +23,7 @@ public class ISSAnomalyNeuralIDS
 		   normIn.setMax(1);
 		   fileIn.addPlugIn(normIn);
 
-		   // Target data normalized between 0 and .9
+		   // Target data normalized between 0 and .4
 		   NormalizerPlugIn normDes = new NormalizerPlugIn();
 		   normDes.setAdvancedSerieSelector("42");
 		   normDes.setMin(0);
@@ -38,7 +38,7 @@ public class ISSAnomalyNeuralIDS
 		   double[][] inputTest = JooneTools.getDataFromStream(fileIn, trainingRows+1, 164, 1, 41);
 		  double[][] desiredTest = JooneTools.getDataFromStream(fileIn, trainingRows+1, 164, 42, 42);
 		
-//		 Line 1: Create an MLP network with 3 layers [2,2,1 nodes] with a logistic output layer
+//		 Line 1: Create an MLP network with 3 layers [41,42,1 nodes] with a logistic output layer
 		NeuralNet nnet = JooneTools.create_standard(new int[]{41,42,1}, JooneTools.LOGISTIC);
 
 //		 Line 2: Train the network for 5000 epochs, or until the rmse < 0.01
@@ -61,9 +61,9 @@ public class ISSAnomalyNeuralIDS
 	            for (int x=0; x < cols; ++x) {
 	                System.out.print(out[i][x]+" ");
 	            }
-	            System.out.print("\tTarget: ");
+	            //System.out.print("\tTarget: ");
 	            for (int x=cols; x < cols*2; ++x) {
-	                System.out.print(out[i][x]+" ");
+	                //System.out.print(out[i][x]+" ");
 	            }
 	        }
 		
