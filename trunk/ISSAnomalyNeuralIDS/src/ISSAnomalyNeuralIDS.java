@@ -27,7 +27,7 @@ public class ISSAnomalyNeuralIDS
 		   NormalizerPlugIn normDes = new NormalizerPlugIn();
 		   normDes.setAdvancedSerieSelector("42");
 		   normDes.setMin(0);
-		   normDes.setMax(.4);
+		   normDes.setMax(.3);
 		   fileIn.addPlugIn(normDes);
 		   
 		   // Extract the training data
